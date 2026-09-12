@@ -24,7 +24,7 @@
     rel="stylesheet">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -53,6 +53,14 @@
 
       <!-- Header CTA -->
       <div class="header-cta">
+        <a href="tel:0944116667" class="btn btn-hotline-header" id="btn-header-hotline" aria-label="Hotline tư vấn">
+          <span class="hotline-icon-pulse">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </span>
+          <span class="hotline-text"><strong>0944.116.667</strong></span>
+        </a>
         <a href="#dang-ky" class="btn btn-primary" id="btn-header-register">
           <span>Đăng ký tư vấn</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -97,6 +105,13 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
+              </a>
+              <a href="tel:0944116667" class="btn btn-hero-hotline btn-lg" id="btn-hero-call">
+                <span class="pulse-indicator"></span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span>Gọi 0944.116.667</span>
               </a>
               <a href="#combo-internet" class="btn btn-outline btn-lg" id="btn-hero-explore">
                 <span>Xem các gói cước</span>
@@ -241,6 +256,47 @@
         <!-- Dynamic Grid Package Cards -->
         <div class="packages-grid" id="chu-ky-so-grid">
           <!-- Populated by JavaScript from Google Sheets -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION MID-CTA: BANNER KÊU GỌI HÀNH ĐỘNG ĐẶC BIỆT -->
+    <section class="section-mid-cta" id="tu-van-nhanh">
+      <div class="container">
+        <div class="mid-cta-box">
+          <div class="mid-cta-glow"></div>
+          <div class="mid-cta-content">
+            <div class="mid-cta-info">
+              <span class="mid-cta-pill">
+                <span class="pulsing-dot"></span>
+                Tư vấn giải pháp trực tiếp 24/7
+              </span>
+              <h3 class="mid-cta-title">Chưa Biết Gói Cước Nào Tối Ưu Cho Gia Đình Bạn?</h3>
+              <p class="mid-cta-desc">
+                Chỉ cần để lại số điện thoại hoặc gọi ngay Hotline, kỹ thuật viên VNPT sẽ khảo sát hạ tầng & tư vấn gói cước tiết kiệm nhất, lắp đặt nhanh chỉ trong 24 giờ.
+              </p>
+            </div>
+            <div class="mid-cta-actions">
+              <a href="tel:0944116667" class="btn btn-cta-call" id="btn-midcta-call">
+                <span class="btn-icon-pulse">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </span>
+                <span>Gọi Hotline: <strong>0944.116.667</strong></span>
+              </a>
+              <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer" class="btn btn-cta-zalo" id="btn-midcta-zalo">
+                <span class="zalo-tag">Zalo</span>
+                <span>Chat Zalo tư vấn</span>
+              </a>
+              <button type="button" class="btn btn-cta-request" id="btn-open-quick-modal">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Yêu cầu gọi lại trong 5 phút</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -404,13 +460,124 @@
     </div>
   </footer>
 
+  <!-- Floating Quick Action Contact Widget (Desktop & Tablet) -->
+  <div class="floating-cta-widget" id="floating-cta-widget">
+    <!-- Back to Top Button -->
+    <button type="button" class="floating-btn btn-back-to-top" id="btn-back-to-top" aria-label="Cuộn lên đầu trang" title="Lên đầu trang">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    </button>
+
+    <!-- Quick Register Button -->
+    <a href="#dang-ky" class="floating-btn btn-floating-register" aria-label="Đăng ký nhanh" title="Đăng ký lắp đặt">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+      </svg>
+      <span class="floating-tooltip">Đăng ký online</span>
+    </a>
+
+    <!-- Zalo Chat Button -->
+    <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer" class="floating-btn btn-floating-zalo" aria-label="Chat Zalo" title="Chat Zalo tư vấn">
+      <span class="zalo-floating-icon">Zalo</span>
+      <span class="floating-tooltip">Chat Zalo</span>
+    </a>
+
+    <!-- Direct Hotline Call Button with Pulse Ripple -->
+    <a href="tel:0944116667" class="floating-btn btn-floating-hotline" aria-label="Gọi Hotline 0944.116.667" title="Gọi Hotline: 0944.116.667">
+      <span class="floating-pulse-ring ring-1"></span>
+      <span class="floating-pulse-ring ring-2"></span>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      <span class="floating-tooltip">Hotline: 0944.116.667</span>
+    </a>
+  </div>
+
+  <!-- Mobile Sticky Bottom Action Bar -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta" aria-label="Thanh tác vụ nhanh di động">
+    <a href="tel:0944116667" class="mobile-cta-item cta-call">
+      <div class="mobile-cta-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <span>Gọi 0944.116.667</span>
+    </a>
+    <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer" class="mobile-cta-item cta-zalo">
+      <div class="mobile-cta-icon-wrap zalo-bg">
+        <span>Zalo</span>
+      </div>
+      <span>Chat Zalo</span>
+    </a>
+    <a href="#dang-ky" class="mobile-cta-item cta-register">
+      <div class="mobile-cta-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </div>
+      <span>Đăng Ký Ngay</span>
+    </a>
+  </div>
+
+  <!-- Quick Callback Modal Popup -->
+  <div class="quick-modal-backdrop" id="quick-callback-modal" role="dialog" aria-modal="true" aria-labelledby="modal-callback-title">
+    <div class="quick-modal-dialog">
+      <button type="button" class="quick-modal-close" id="btn-close-modal" aria-label="Đóng popup">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="quick-modal-header">
+        <div class="quick-modal-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <h3 id="modal-callback-title" class="quick-modal-title">Yêu Cầu Gọi Lại Trong 5 Phút</h3>
+        <p class="quick-modal-subtitle">Để lại số điện thoại, tư vấn viên VNPT sẽ liên hệ hỗ trợ bạn ngay lập tức.</p>
+      </div>
+
+      <form id="quick-callback-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="modal-fullname">Họ và tên <span class="required">*</span></label>
+          <input type="text" id="modal-fullname" name="fullname" class="form-control" placeholder="Ví dụ: Nguyễn Văn An" required>
+          <div class="form-hint"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-phone">Số điện thoại <span class="required">*</span></label>
+          <input type="tel" id="modal-phone" name="phone" class="form-control" placeholder="Ví dụ: 0912345678" required>
+          <div class="form-hint"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-package">Dịch vụ quan tâm</label>
+          <select id="modal-package" name="package_interest" class="form-control">
+            <option value="">-- Chọn gói cước quan tâm --</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-submit-modal">
+          <span>Gọi Lại Cho Tôi Ngay</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- Floating Toast Notifications Container -->
   <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
   <!-- JavaScript Modules -->
-  <script src="/js/config.js"></script>
-  <script src="/js/api.js"></script>
-  <script src="/js/app.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
 </body>
 
 </html>

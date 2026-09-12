@@ -70,3 +70,14 @@ Landing Page giới thiệu & thu thập đăng ký các gói dịch vụ viễn
 │   └── Code.gs                 # Backend Apps Script (doGet, doPost, setupInitialSheets)
 └── README.md                   # Hướng dẫn chi tiết
 ```
+
+## ⚠️ Lưu ý khi deploy lên Vercel
+
+Đây là site tĩnh (static HTML/CSS/JS), **không cần chạy `server.js` khi lên production** — file đó chỉ dùng để preview local (`npm run dev`).
+
+Đã thêm sẵn `vercel.json` ép cấu hình static hosting tường minh (không để Vercel tự suy luận framework), tránh lỗi vỡ giao diện do CSS/JS không được serve đúng.
+
+Nếu vẫn gặp lỗi sau khi deploy lại:
+1. Vào Vercel Dashboard > Project > Settings > General, kiểm tra **Root Directory** trỏ đúng vào thư mục chứa `index.html` (không lồng thêm 1 cấp thư mục con).
+2. Mở DevTools (F12) > tab Network trên bản deploy, reload trang, lọc theo `style.css` và các file `.js` — xem status code có phải 404 không, và Content-Type có đúng `text/css`/`application/javascript` không.
+3. Xóa cache deployment cũ và **Redeploy** (không dùng cache) để chắc chắn cấu hình mới được áp dụng.

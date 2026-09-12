@@ -19,8 +19,18 @@ const App = {
     // Forms
     mainForm: document.getElementById('main-register-form'),
     heroForm: document.getElementById('hero-quick-form'),
+    modalForm: document.getElementById('quick-callback-form'),
     packageSelect: document.getElementById('package-select'),
     heroPackageSelect: document.getElementById('hero-package-select'),
+    modalPackageSelect: document.getElementById('modal-package'),
+
+    // Modal elements
+    callbackModal: document.getElementById('quick-callback-modal'),
+    modalOpenBtn: document.getElementById('btn-open-quick-modal'),
+    modalCloseBtn: document.getElementById('btn-close-modal'),
+
+    // Back to Top
+    backToTopBtn: document.getElementById('btn-back-to-top'),
 
     // Form Alert containers
     formAlertSuccess: document.getElementById('form-alert-success'),
@@ -103,6 +113,59 @@ const App = {
       });
     }
 
+    // Quick Callback Modal Form
+    if (this.elements.modalForm) {
+      this.elements.modalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.handleFormSubmit(this.elements.modalForm, () => {
+          this.closeCallbackModal();
+        });
+      });
+    }
+
+    // Mở / Đóng Modal Gọi Lại
+    if (this.elements.modalOpenBtn) {
+      this.elements.modalOpenBtn.addEventListener('click', () => {
+        this.openCallbackModal();
+      });
+    }
+
+    if (this.elements.modalCloseBtn) {
+      this.elements.modalCloseBtn.addEventListener('click', () => {
+        this.closeCallbackModal();
+      });
+    }
+
+    if (this.elements.callbackModal) {
+      this.elements.callbackModal.addEventListener('click', (e) => {
+        if (e.target === this.elements.callbackModal) {
+          this.closeCallbackModal();
+        }
+      });
+    }
+
+    // Đóng Modal khi bấm phím Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeCallbackModal();
+      }
+    });
+
+    // Back to Top Button & Scroll Listener
+    if (this.elements.backToTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 350) {
+          this.elements.backToTopBtn.classList.add('show');
+        } else {
+          this.elements.backToTopBtn.classList.remove('show');
+        }
+      }, { passive: true });
+
+      this.elements.backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
     // Xóa cảnh báo lỗi khi người dùng sửa input
     const inputs = document.querySelectorAll('.form-control');
     inputs.forEach(input => {
@@ -112,6 +175,24 @@ const App = {
         if (hint) hint.textContent = '';
       });
     });
+  },
+
+  openCallbackModal() {
+    if (this.elements.callbackModal) {
+      this.elements.callbackModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      const nameInput = document.getElementById('modal-fullname');
+      if (nameInput) {
+        setTimeout(() => nameInput.focus(), 150);
+      }
+    }
+  },
+
+  closeCallbackModal() {
+    if (this.elements.callbackModal) {
+      this.elements.callbackModal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
   },
 
   /**
@@ -457,6 +538,7 @@ const App = {
   populatePackageSelects() {
     const currentMainVal = this.elements.packageSelect ? this.elements.packageSelect.value : '';
     const currentHeroVal = this.elements.heroPackageSelect ? this.elements.heroPackageSelect.value : '';
+    const currentModalVal = this.elements.modalPackageSelect ? this.elements.modalPackageSelect.value : '';
 
     const optionsHtml = `
       <option value="">-- Chọn gói cước bạn quan tâm --</option>
@@ -472,6 +554,10 @@ const App = {
     if (this.elements.heroPackageSelect) {
       this.elements.heroPackageSelect.innerHTML = optionsHtml;
       if (currentHeroVal) this.elements.heroPackageSelect.value = currentHeroVal;
+    }
+    if (this.elements.modalPackageSelect) {
+      this.elements.modalPackageSelect.innerHTML = optionsHtml;
+      if (currentModalVal) this.elements.modalPackageSelect.value = currentModalVal;
     }
   },
 
@@ -499,7 +585,7 @@ const App = {
   /**
    * Xử lý gửi Form ĐĂNG KÝ VÀ CHỜ PHẢN HỒI THÀNH CÔNG ĐỒNG BỘ
    */
-  async handleFormSubmit(form) {
+  async handleFormSubmit(form, onSuccessCallback) {
     if (this.state.isSubmitting) return;
 
     const nameInput = form.querySelector('[name="fullname"]');
@@ -558,6 +644,10 @@ const App = {
 
         // Reset form sau khi chắc chắn ghi thành công
         form.reset();
+
+        if (typeof onSuccessCallback === 'function') {
+          onSuccessCallback();
+        }
       } else {
         throw new Error(response.message || 'Không nhận được xác nhận từ hệ thống.');
       }

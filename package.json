@@ -4,6 +4,8 @@
   "description": "VNPT Service Registration Landing Page",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
     "build": "echo \"Static site build completed successfully\""
   },
   "keywords": [

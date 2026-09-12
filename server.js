@@ -58,9 +58,10 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
+  const actualPort = server.address().port;
   console.log(`\n==============================================`);
   console.log(`  VNPT Landing Page Server is running!`);
-  console.log(`  Local URL: http://localhost:${PORT}`);
+  console.log(`  Local URL: http://localhost:${actualPort}`);
   console.log(`==============================================\n`);
 });
 
