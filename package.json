@@ -1,0 +1,15 @@
+{
+  "name": "vnpt-landing-page",
+  "version": "1.0.0",
+  "description": "VNPT Service Registration Landing Page",
+  "main": "server.js",
+  "scripts": {
+    "build": "echo \"Static site build completed successfully\""
+  },
+  "keywords": [
+    "vnpt",
+    "landing-page"
+  ],
+  "license": "ISC",
+  "private": true
+}
