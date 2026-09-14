@@ -16,9 +16,9 @@ const CONFIG = {
   // Cấu hình Tự Động Trượt Dọc Từng Mục Như Slider (Section Carousel Auto-Slide)
   AUTO_SCROLL: {
     ENABLED_BY_DEFAULT: true,       // Tự động trượt ngay khi mở trang mà không cần thao tác
-    INITIAL_DELAY_MS: 20000,        // Thời gian chờ 30 giây ở Mục 1 Hero Banner
-    SECTION_DURATION_MS: 20000,     // Thời gian chờ 30 giây ở mỗi nhóm dịch vụ sau khi trượt đến
-    LAST_SECTION_DURATION_MS: 20000,// Thời gian chờ 30 giây ở form Đăng ký cuối trang trước khi trượt về đầu
+    INITIAL_DELAY_MS: 10000,        // Thời gian chờ 30 giây ở Mục 1 Hero Banner
+    SECTION_DURATION_MS: 10000,     // Thời gian chờ 30 giây ở mỗi nhóm dịch vụ sau khi trượt đến
+    LAST_SECTION_DURATION_MS: 10000,// Thời gian chờ 30 giây ở form Đăng ký cuối trang trước khi trượt về đầu
     IDLE_RESUME_MS: 4000            // Tự tiếp tục trượt sau 4s khi người dùng dừng thao tác
   },
 

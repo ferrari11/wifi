@@ -1836,13 +1836,6 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  padding: 8px 4px;
-  border-radius: var(--radius-md);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-align: center;
-  transition: transform var(--transition-fast);
-
   padding: 7px 3px;
   border-radius: var(--radius-md);
   font-size: 0.72rem;
@@ -1886,19 +1879,14 @@ textarea {
   background: #0068FF;
   color: #FFFFFF;
   padding: 1px 4px;
-  border-radius: 3px;
-  color: white;
   border-radius: 4px;
-  padding: 1px 4px;
   line-height: 1.2;
 }
 
 .mobile-cta-item.cta-register {
   background: linear-gradient(135deg, var(--vnpt-blue) 0%, #0077D4 100%);
   color: #FFFFFF;
-  box-shadow: 0 2px 8px rgba(0, 91, 170, 0.3);
   box-shadow: 0 2px 8px rgba(0, 91, 170, 0.35);
-
 }
 
 /* ==========================================================================
@@ -2056,216 +2044,182 @@ textarea {
   }
 }
 
+@media (max-width: 1200px) {
+  .main-nav {
+    gap: 2px;
+    margin: 0 4px;
+  }
+
+  .nav-link {
+    padding: 6px 8px;
+    font-size: 0.8125rem;
+  }
+
+  .btn-hotline-header {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+
+  #btn-header-register {
+    padding: 7px 12px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 1040px) {
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: #FFFFFF;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: var(--shadow-lg);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .main-nav.show {
+    display: flex;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     padding-bottom: 74px;
   }
 
-  @media (max-width: 1200px) {
-    .main-nav {
-      gap: 2px;
-      margin: 0 4px;
-    }
-
-    .nav-link {
-      padding: 6px 8px;
-      font-size: 0.8125rem;
-    }
-
-    .btn-hotline-header {
-      padding: 6px 10px;
-      font-size: 0.78rem;
-    }
-
-    #btn-header-register {
-      padding: 7px 12px;
-      font-size: 0.8125rem;
-    }
+  .btn-hotline-header {
+    padding: 8px 10px;
   }
 
-  @media (max-width: 1040px) {
-    .main-nav {
-      display: none;
-      position: absolute;
-      top: 72px;
-      left: 0;
-      right: 0;
-      background: #FFFFFF;
-      flex-direction: column;
-      padding: 20px;
-      box-shadow: var(--shadow-lg);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .main-nav.show {
-      display: flex;
-    }
-
-    .mobile-menu-toggle {
-      display: block;
-    }
+  .btn-hotline-header .hotline-text {
+    display: none;
   }
 
-  @media (max-width: 768px) {
-    body {
-      padding-bottom: 74px;
-    }
-
-    .btn-hotline-header {
-      padding: 8px 10px;
-    }
-
-    .btn-hotline-header .hotline-text {
-      display: none;
-    }
-
-    .vertical-scroll-nav {
-      display: none;
-    }
-
-    .auto-scroll-bar {
-      display: none;
-    }
-
-    .mobile-sticky-cta {
-      display: grid;
-    }
-
-    .floating-cta-widget {
-      bottom: 84px;
-      right: 14px;
-      gap: 10px;
-    }
-
-    .floating-btn {
-      width: 44px;
-      height: 44px;
-    }
-
-    .btn-floating-hotline {
-      width: 50px;
-      height: 50px;
-    }
-
-    .btn-hotline-header {
-      padding: 8px 10px;
-    }
-
-    .btn-hotline-header .hotline-text {
-      display: none;
-    }
-
-    .mobile-sticky-cta {
-      display: grid;
-    }
-
-    .floating-cta-widget {
-      bottom: 84px;
-      right: 14px;
-      gap: 10px;
-    }
-
-    .floating-btn {
-      width: 44px;
-      height: 44px;
-    }
-
-    .btn-floating-hotline {
-      width: 50px;
-      height: 50px;
-    }
-
-    .hero-title {
-      font-size: 2.15rem;
-    }
-
-    .hero-actions {
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .section {
-      padding: 50px 0;
-    }
-
-    .section-title {
-      font-size: 1.75rem;
-    }
-
-    .invoice-intro-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .legal-guide-wrapper {
-      padding: 24px 18px;
-    }
-
-    .legal-title {
-      font-size: 1.35rem;
-    }
-
-    .mid-cta-box {
-      padding: 32px 22px;
-    }
-
-    .mid-cta-title {
-      font-size: 1.5rem;
-    }
-
-    .mid-cta-actions {
-      flex-direction: column;
-    }
-
-    .packages-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .slider-track .package-card {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
-
-    .category-highlight-banner {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-
-    .footer-bottom {
-      flex-direction: column;
-      gap: 12px;
-      text-align: center;
-    }
+  .vertical-scroll-nav {
+    display: none;
   }
 
-  @media (max-width: 480px) {
-    .hero-title {
-      font-size: 1.85rem;
-    }
+  .auto-scroll-bar {
+    display: none;
+  }
 
-    .hero-stats {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
+  .mobile-sticky-cta {
+    display: grid;
+  }
 
-    .hero-card {
-      padding: 24px 18px;
-    }
+  .floating-cta-widget {
+    bottom: 84px;
+    right: 14px;
+    gap: 10px;
+  }
 
-    .package-card {
-      padding: 24px 18px;
-    }
+  .floating-btn {
+    width: 44px;
+    height: 44px;
+  }
 
-    .form-inputs-col {
-      padding: 28px 18px;
-    }
+  .btn-floating-hotline {
+    width: 50px;
+    height: 50px;
+  }
 
-    .quick-modal-dialog {
-      padding: 28px 20px;
-    }
+  .hero-title {
+    font-size: 2.15rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .invoice-intro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .legal-guide-wrapper {
+    padding: 24px 18px;
+  }
+
+  .legal-title {
+    font-size: 1.35rem;
+  }
+
+  .mid-cta-box {
+    padding: 32px 22px;
+  }
+
+  .mid-cta-title {
+    font-size: 1.5rem;
+  }
+
+  .mid-cta-actions {
+    flex-direction: column;
+  }
+
+  .packages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .slider-track .package-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .category-highlight-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .hero-card {
+    padding: 24px 18px;
+  }
+
+  .package-card {
+    padding: 24px 18px;
+  }
+
+  .form-inputs-col {
+    padding: 28px 18px;
+  }
+
+  .quick-modal-dialog {
+    padding: 28px 20px;
   }
 }
