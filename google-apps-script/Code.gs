@@ -1,20 +1,44 @@
 /**
  * GOOGLE APPS SCRIPT - BACKEND CHO VNPT LANDING PAGE
  * 
- * Hướng dẫn triển khai:
+ * Hướng dẫn triển khai & Bật thông báo Email:
  * 1. Mở Google Sheet của bạn.
  * 2. Vào Tiện ích mở rộng (Extensions) -> Apps Script.
  * 3. Dán toàn bộ mã nguồn này vào tệp Code.gs.
- * 4. Chạy hàm `setupInitialSheets()` một lần nếu muốn khởi tạo lại cấu trúc tab chuẩn.
+ * 4. Điền địa chỉ email của bạn vào biến `ADMIN_EMAILS` trong `EMAIL_NOTIFICATION_CONFIG` bên dưới.
  * 5. Bấm "Triển khai" (Deploy) -> "Quản lý tùy chọn triển khai" (Manage deployments).
  * 6. Chọn biểu tượng cây bút ✏️ (Chỉnh sửa) -> Ở mục "Phiên bản" (Version), chọn "Phiên bản mới" (New version) -> Bấm Triển khai (Deploy).
  */
 
+// =========================================================================
+// 1. CẤU HÌNH THÔNG BÁO EMAIL QUẢN TRỊ VIÊN KHI CÓ KHÁCH ĐĂNG KÝ
+// =========================================================================
+const EMAIL_NOTIFICATION_CONFIG = {
+  // Bật/Tắt gửi email thông báo khi có đơn đăng ký mới (true: Bật, false: Tắt)
+  ENABLED: true,
+
+  // Địa chỉ Email quản trị nhận thông báo.
+  // - Có thể điền 1 email: "admin@gmail.com"
+  // - Hoặc nhiều email cách nhau bằng dấu phẩy: "admin1@gmail.com, admin2@gmail.com"
+  // - Nếu để trống ("") hoặc giữ nguyên "your_email@gmail.com", script sẽ tự động gửi về Email của tài khoản Google triển khai Web App này.
+  ADMIN_EMAILS: "lekhiemlv@gmail.com",
+
+  // Tên người gửi hiển thị trong hộp thư đến
+  SENDER_NAME: "VNPT Landing Page - Tiếp Nhận Đăng Ký",
+
+  // Tiền tố tiêu đề Email
+  SUBJECT_PREFIX: "[VNPT LANDING PAGE] Đơn Đăng Ký Mới - "
+};
+
+// =========================================================================
+// 2. CẤU HÌNH TÊN TAB GOOGLE SHEETS
+// =========================================================================
 const SHEET_TABS = {
   COMBO: 'combo_internet',
   SIM: 'sim_so',
   CAMERA: 'camera_an_ninh',
   CA: 'chu_ky_so',
+  INVOICE: 'hoa_don_dien_tu',
   SUBMISSIONS: 'submissions'
 };
 
@@ -53,7 +77,8 @@ function doGet(e) {
         combo_internet: getSheetDataSmart(ss, ['combo_internet', 'combo internet', 'combo', 'internet', 'goi cuoi', 'gói cưới', 'home combo']),
         sim_so: getSheetDataSmart(ss, ['sim_so', 'sim số', 'sim so', 'sim', 'di động', 'vinaphone']),
         camera_an_ninh: getSheetDataSmart(ss, ['camera_an_ninh', 'camera an ninh', 'camera', 'home camera', 'giam sat']),
-        chu_ky_so: getSheetDataSmart(ss, ['chu_ky_so', 'chữ ký số', 'chu ky so', 'smartca', 'ca', 'token'])
+        chu_ky_so: getSheetDataSmart(ss, ['chu_ky_so', 'chữ ký số', 'chu ky so', 'smartca', 'ca', 'token']),
+        hoa_don_dien_tu: getSheetDataSmart(ss, ['hoa_don_dien_tu', 'hóa đơn điện tử', 'hoa don dien tu', 'invoice', 'vnpt invoice', 'may tinh tien', 'pos'])
       }
     };
 
@@ -112,7 +137,7 @@ function doPost(e) {
 }
 
 /**
- * Ghi nhận dòng mới vào tab submissions (Đồng bộ, appendRow + flush)
+ * Ghi nhận dòng mới vào tab submissions & Tự động gửi Email thông báo cho Quản trị viên
  */
 function createSubmission(fullName, phone, packageInterest, note) {
   if (!fullName || !phone) {
@@ -129,6 +154,7 @@ function createSubmission(fullName, phone, packageInterest, note) {
     subSheet = ss.insertSheet(SHEET_TABS.SUBMISSIONS);
     subSheet.appendRow(['Timestamp', 'Họ và tên', 'Số điện thoại', 'Gói quan tâm', 'Ghi chú', 'Trạng thái xử lý']);
     subSheet.getRange(1, 1, 1, 6).setFontWeight('bold').setBackground('#005BAA').setFontColor('#FFFFFF');
+    subSheet.setFrozenRows(1);
   }
 
   const timestamp = Utilities.formatDate(new Date(), "GMT+7", "dd/MM/yyyy HH:mm:ss");
@@ -143,6 +169,9 @@ function createSubmission(fullName, phone, packageInterest, note) {
 
   subSheet.appendRow(newRow);
   SpreadsheetApp.flush();
+
+  // Tự động gửi Email thông báo tới Quản trị viên
+  sendAdminEmailNotification(fullName, phone, packageInterest, note, timestamp, ss);
 
   return {
     status: 'success',
@@ -160,6 +189,167 @@ function recordSubmission(fullName, phone, packageInterest, note) {
   const result = createSubmission(fullName, phone, packageInterest, note);
   return ContentService.createTextOutput(JSON.stringify(result))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
+ * Tự động gửi Email thông báo cho Quản trị viên với mẫu HTML chuyên nghiệp
+ */
+function sendAdminEmailNotification(fullName, phone, packageInterest, note, timestamp, ss) {
+  if (!EMAIL_NOTIFICATION_CONFIG.ENABLED) {
+    Logger.log('ℹ️ Tính năng gửi email đang bị tắt trong cấu hình (ENABLED = false).');
+    return;
+  }
+
+  try {
+    // 1. Xác định email quản trị viên nhận thông báo
+    let recipients = (EMAIL_NOTIFICATION_CONFIG.ADMIN_EMAILS || '').trim();
+    
+    // Nếu chưa cấu hình hoặc để mặc định, tự động lấy email của chủ tài khoản Google
+    if (!recipients || !recipients.includes('@') || recipients.includes('your_email')) {
+      try {
+        recipients = Session.getEffectiveUser().getEmail() || Session.getActiveUser().getEmail();
+      } catch (userErr) {
+        Logger.log('Không lấy được email phiên đăng nhập: ' + userErr.message);
+      }
+    }
+
+    if (!recipients || !recipients.includes('@')) {
+      Logger.log('⚠️ Không tìm thấy địa chỉ email hợp lệ để gửi thông báo.');
+      return;
+    }
+
+    const sheetUrl = ss ? ss.getUrl() : '';
+    const subject = `${EMAIL_NOTIFICATION_CONFIG.SUBJECT_PREFIX}${fullName} - ${phone}`;
+
+    // 2. Nội dung văn bản thuần (Fallback cho client không hỗ trợ HTML)
+    const plainBody = 
+      `Kính gửi Quản trị viên VNPT,\n\n` +
+      `Hệ thống vừa tiếp nhận 01 đơn đăng ký tư vấn mới từ Landing Page:\n` +
+      `----------------------------------------\n` +
+      `• Họ và tên: ${fullName}\n` +
+      `• Số điện thoại: ${phone}\n` +
+      `• Gói cước / Dịch vụ quan tâm: ${packageInterest}\n` +
+      `• Ghi chú / Địa chỉ: ${note || 'Không có ghi chú'}\n` +
+      `• Thời gian tiếp nhận: ${timestamp}\n` +
+      `----------------------------------------\n\n` +
+      `Vui lòng liên hệ hỗ trợ khách hàng sớm nhất!\n` +
+      (sheetUrl ? `Xem toàn bộ danh sách tại Google Sheets: ${sheetUrl}\n` : '');
+
+    // 3. Nội dung HTML định dạng giao diện chuyên nghiệp chuẩn nhận diện VNPT
+    const htmlBody = `
+      <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #005BAA 0%, #003870 100%); padding: 24px; text-align: center; color: #ffffff;">
+          <div style="font-size: 20px; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase;">VNPT LANDING PAGE</div>
+          <div style="font-size: 14px; opacity: 0.9; margin-top: 6px;">🔔 Thông Báo Đơn Đăng Ký Tư Vấn Mới</div>
+        </div>
+
+        <!-- Body Content -->
+        <div style="padding: 24px 28px; color: #1e293b; line-height: 1.6;">
+          <p style="font-size: 15px; margin-top: 0; color: #334155;">
+            Xin chào <strong>Quản trị viên</strong>,<br>
+            Khách hàng vừa gửi thông tin đăng ký dịch vụ trên website Landing Page:
+          </p>
+
+          <!-- Customer Info Card -->
+          <table style="width: 100%; border-collapse: collapse; margin: 20px 0; background-color: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <tr>
+              <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; width: 38%; color: #64748b; font-weight: 600; font-size: 14px;">👤 Họ và tên:</td>
+              <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 15px; font-weight: bold; color: #0f172a;">${escapeHtml(fullName)}</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; color: #64748b; font-weight: 600; font-size: 14px;">📞 Số điện thoại:</td>
+              <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 16px; font-weight: bold; color: #005BAA;">
+                <a href="tel:${escapeHtml(phone)}" style="color: #005BAA; text-decoration: none;">${escapeHtml(phone)}</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; color: #64748b; font-weight: 600; font-size: 14px;">📦 Gói quan tâm:</td>
+              <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: bold; color: #005BAA;">
+                <span style="background-color: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 6px; display: inline-block;">
+                  ${escapeHtml(packageInterest)}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; color: #64748b; font-weight: 600; font-size: 14px;">📝 Ghi chú / Địa chỉ:</td>
+              <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #334155;">${escapeHtml(note || 'Không có ghi chú')}</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 16px; color: #64748b; font-weight: 600; font-size: 14px;">⏰ Thời gian tiếp nhận:</td>
+              <td style="padding: 12px 16px; font-size: 14px; color: #64748b;">${escapeHtml(timestamp)}</td>
+            </tr>
+          </table>
+
+          <!-- Action Buttons -->
+          <div style="text-align: center; margin: 28px 0 10px 0;">
+            <a href="tel:${escapeHtml(phone)}" style="display: inline-block; background-color: #16a34a; color: #ffffff; text-decoration: none; font-weight: bold; padding: 12px 22px; border-radius: 8px; margin: 0 6px 10px 6px; box-shadow: 0 2px 6px rgba(22,163,74,0.3);">
+              📞 Gọi Khách Hàng Ngay (${escapeHtml(phone)})
+            </a>
+            ${sheetUrl ? `
+            <a href="${sheetUrl}" style="display: inline-block; background-color: #005BAA; color: #ffffff; text-decoration: none; font-weight: bold; padding: 12px 22px; border-radius: 8px; margin: 0 6px 10px 6px; box-shadow: 0 2px 6px rgba(0,91,170,0.3);">
+              📊 Mở Google Sheets
+            </a>
+            ` : ''}
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="background-color: #f1f5f9; padding: 14px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0;">
+          Email được gửi tự động từ hệ thống VNPT Landing Page.<br>
+          Thời gian tạo: ${escapeHtml(timestamp)}
+        </div>
+      </div>
+    `;
+
+    // 4. Thực hiện gửi email thông báo (Hỗ trợ Dual-Service: MailApp + GmailApp)
+    try {
+      MailApp.sendEmail({
+        to: recipients,
+        subject: subject,
+        body: plainBody,
+        htmlBody: htmlBody,
+        name: EMAIL_NOTIFICATION_CONFIG.SENDER_NAME
+      });
+      Logger.log('✅ [MailApp] Đã gửi email thông báo thành công đến: ' + recipients);
+    } catch (mailErr) {
+      Logger.log('ℹ️ MailApp gặp trở ngại (' + mailErr.message + '), chuyển sang gửi qua GmailApp...');
+      GmailApp.sendEmail(recipients, subject, plainBody, {
+        htmlBody: htmlBody,
+        name: EMAIL_NOTIFICATION_CONFIG.SENDER_NAME
+      });
+      Logger.log('✅ [GmailApp] Đã gửi email thông báo thành công đến: ' + recipients);
+    }
+
+  } catch (err) {
+    Logger.log('⚠️ Không thể gửi email thông báo: ' + err.toString());
+  }
+}
+
+/**
+ * Hàm kiểm tra thử tính năng gửi Email (Chạy trực tiếp từ trình soạn thảo Apps Script để kiểm tra)
+ */
+function testSendAdminEmail() {
+  const testName = "Nguyễn Văn An (Test Đăng Ký)";
+  const testPhone = "0912345678";
+  const testPackage = "Home Combo Hạnh Phúc (Gói Cưới)";
+  const testNote = "Lắp đặt cáp quang Wifi 6 và Camera AI tại Quận 1, TP.HCM";
+  const testTime = Utilities.formatDate(new Date(), "GMT+7", "dd/MM/yyyy HH:mm:ss");
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  Logger.log('=== BẮT ĐẦU CHẠY KIỂM TRA GỬI EMAIL ===');
+  sendAdminEmailNotification(testName, testPhone, testPackage, testNote, testTime, ss);
+  Logger.log('=== KẾT THÚC KIỂM TRA ===');
+}
+
+function escapeHtml(text) {
+  if (!text) return '';
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 /**
@@ -561,7 +751,64 @@ function setupInitialSheets() {
     ]
   );
 
-  // 5. Tab Submissions
+  // 5. Tab Hóa đơn điện tử (VNPT-Invoice)
+  createOrUpdateSheet(ss, SHEET_TABS.INVOICE,
+    ['package_name', 'price', 'description', 'features', 'cta_label', 'is_active', 'badge', 'highlight'],
+    [
+      [
+        'VNPT-Invoice 300 HĐ (Hộ Kinh Doanh)',
+        '300.000 đ',
+        'Gói cước hóa đơn điện tử cơ bản cho Hộ kinh doanh cá thể mới thành lập',
+        'Số lượng 300 số hóa đơn điện tử (1.000đ/HĐ);Hợp chuẩn 100% Thông tư 78 và Nghị định 123/2020/NĐ-CP;Miễn phí thiết kế mẫu hóa đơn theo nhận diện;Lưu trữ dữ liệu an toàn bảo mật 10 năm tại VNPT IDC',
+        'Đăng ký gói 300 HĐ',
+        'TRUE',
+        'Hộ Kinh Doanh',
+        'FALSE'
+      ],
+      [
+        'VNPT-Invoice 500 HĐ',
+        '450.000 đ',
+        'Gói cước phổ biến cho Hộ kinh doanh & Doanh nghiệp vừa và nhỏ',
+        'Số lượng 500 số hóa đơn điện tử (900đ/HĐ);Hỗ trợ ký số qua SmartCA hoặc USB Token;Tự động truyền nhận dữ liệu trực tiếp với Tổng cục Thuế;Cổng tra cứu hóa đơn trực tuyến 24/7 cho khách mua',
+        'Đăng ký gói 500 HĐ',
+        'TRUE',
+        'Bán Chạy',
+        'FALSE'
+      ],
+      [
+        'VNPT-Invoice 1.000 HĐ (Khuyên Dùng)',
+        '750.000 đ',
+        'Giải pháp hóa đơn điện tử toàn diện cho Doanh nghiệp & Chuỗi bán lẻ',
+        'Số lượng 1.000 số hóa đơn điện tử (750đ/HĐ);Tích hợp HĐĐT khởi tạo từ Máy tính tiền (POS);Tương thích 100% phần mềm kế toán MISA, Fast, Bravo...;Hỗ trợ trọn gói nộp tờ khai Mẫu 01/ĐKTĐ-HĐĐT lên Thuế',
+        'Đăng ký ngay',
+        'TRUE',
+        'Khuyên Dùng',
+        'TRUE'
+      ],
+      [
+        'VNPT-Invoice 2.000 HĐ + Máy Tính Tiền',
+        '1.300.000 đ',
+        'Tối ưu cho nhà hàng, quán cafe, siêu thị mini, bán lẻ & dịch vụ',
+        'Số lượng 2.000 số hóa đơn điện tử (650đ/HĐ);Xuất hóa đơn tức thời tại quầy thu ngân theo ca;Quản lý doanh thu, báo cáo thuế realtime minh bạch;Hỗ trợ kỹ thuật ưu tiên 24/7 từ chuyên viên VNPT',
+        'Đăng ký POS',
+        'TRUE',
+        'POS Máy Tính Tiền',
+        'TRUE'
+      ],
+      [
+        'VNPT-Invoice 5.000 HĐ (Doanh Nghiệp)',
+        '2.650.000 đ',
+        'Gói cước dung lượng lớn tiết kiệm tối đa cho Doanh nghiệp xuất hóa đơn thường xuyên',
+        'Số lượng 5.000 số hóa đơn điện tử (siêu rẻ 530đ/HĐ);Không giới hạn số lượng tài khoản phân quyền tạo lập HĐ;Cung cấp Web Service API kết nối ERP, SAP, CRM;Phân quyền ký duyệt đa cấp độ (Kế toán -> Giám đốc)',
+        'Đăng ký Doanh Nghiệp',
+        'TRUE',
+        'Tiết Kiệm 50%',
+        'FALSE'
+      ]
+    ]
+  );
+
+  // 6. Tab Submissions
   let subSheet = ss.getSheetByName(SHEET_TABS.SUBMISSIONS);
   if (!subSheet) {
     subSheet = ss.insertSheet(SHEET_TABS.SUBMISSIONS);

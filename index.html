@@ -29,6 +29,10 @@
 
 <body>
 
+  <!-- Top Reading Scroll Progress Bar -->
+  <div class="scroll-progress-container" id="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+  </div>
 
   <!-- Main Navigation Header -->
   <header class="site-header" id="site-header">
@@ -43,21 +47,31 @@
         </div>
       </a>
 
-      <!-- Navigation Links (4 Sản phẩm theo đúng phạm vi) -->
+      <!-- Navigation Links (5 Nhóm giải pháp dịch vụ số) -->
       <nav class="main-nav" id="main-nav" aria-label="Menu chính">
         <a href="#combo-internet" class="nav-link" id="nav-combo">Combo Internet</a>
         <a href="#sim-so" class="nav-link" id="nav-sim">Sim Số & Data</a>
         <a href="#camera-an-ninh" class="nav-link" id="nav-camera">Camera An Ninh</a>
         <a href="#chu-ky-so" class="nav-link" id="nav-ca">Chữ Ký Số</a>
+        <a href="#hoa-don-dien-tu" class="nav-link" id="nav-invoice">Hóa Đơn Điện Tử</a>
       </nav>
 
       <!-- Header CTA -->
       <div class="header-cta">
         <a href="tel:0944116667" class="btn btn-hotline-header" id="btn-header-hotline" aria-label="Hotline tư vấn">
           <span class="hotline-icon-pulse">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
+
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+
+              </svg>
           </span>
           <span class="hotline-text"><strong>0944.116.667</strong></span>
         </a>
@@ -88,16 +102,17 @@
           <div class="hero-content">
             <div class="hero-pill">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z" />
+                <path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4-6.2-4.5h7.6z" />
               </svg>
-              <span>Ưu đãi viễn thông số VNPT 2026</span>
+              <span>Ưu Đãi Viễn Thông & Dịch Vụ Số VNPT 2026</span>
             </div>
             <h1 class="hero-title">
-              Giải Pháp Kết Nối Toàn Diện <span>Cho Mọi Gia Đình Việt</span>
+              Giải Pháp Kết Nối Toàn Diện
+              <span>Cho Gia Đình & Doanh Nghiệp</span>
             </h1>
             <p class="hero-desc">
-              Trải nghiệm Internet cáp quang siêu tốc độ, truyền hình MyTV 4K, sim số đẹp VinaPhone, camera an ninh AI
-              bảo mật và chữ ký số SmartCA hiện đại.
+              Trải nghiệm Internet cáp quang FiberVNN siêu tốc độ, Truyền hình MyTV 4K, Sim số đẹp VinaPhone, Camera AI
+              bảo mật, Chữ ký số SmartCA và Hóa đơn điện tử VNPT-Invoice.
             </p>
             <div class="hero-actions">
               <a href="#dang-ky" class="btn btn-primary btn-lg" id="btn-hero-cta">
@@ -109,7 +124,13 @@
               <a href="tel:0944116667" class="btn btn-hero-hotline btn-lg" id="btn-hero-call">
                 <span class="pulse-indicator"></span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+
                 </svg>
                 <span>Gọi 0944.116.667</span>
               </a>
@@ -175,13 +196,14 @@
     <section class="section section-alt" id="combo-internet">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Combo Internet + Truyền Hình "Gói Cưới"</h2>
+          <h2 class="section-title"><span class="text-nowrap">Combo Internet</span> + <span class="text-nowrap">Truyền
+              Hình</span></h2>
           <p class="section-subtitle">
             Giải pháp Home Combo dành riêng cho hộ gia đình mới: Đường truyền cáp quang tốc độ cao từ 150 Mbps đến 500
             Mbps kèm Truyền hình MyTV VIP 180+ kênh 4K và Modem Wifi Mesh phủ sóng toàn ngôi nhà.
           </p>
         </div>
-
+        <!-- comment
         <div class="category-highlight-banner">
           <div class="cat-banner-content">
             <div class="cat-banner-icon">
@@ -198,7 +220,7 @@
           </div>
           <a href="#dang-ky" class="btn btn-secondary">Nhận ưu đãi ngay</a>
         </div>
-
+      -->
         <!-- Dynamic Grid Package Cards -->
         <div class="packages-grid" id="combo-internet-grid">
           <!-- Populated by JavaScript from Google Sheets -->
@@ -210,7 +232,8 @@
     <section class="section" id="sim-so">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Sim Số Đẹp & Gói Cước Di Động VinaPhone</h2>
+          <h2 class="section-title"><span class="text-nowrap">Sim Số Đẹp</span> & <span class="text-nowrap">Gói Cước Di
+              Động VinaPhone</span></h2>
           <p class="section-subtitle">
             Kho sim số phong thủy, lộc phát đầu số vàng 091, 094, 088 kết hợp cùng các gói cước Data 4G/5G dung lượng
             cực khủng, miễn phí gọi nội mạng và truy cập giải trí thả ga.
@@ -228,7 +251,8 @@
     <section class="section section-alt" id="camera-an-ninh">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Camera An Ninh VNPT Home Camera</h2>
+          <h2 class="section-title"><span class="text-nowrap">Camera An Ninh</span> <span class="text-nowrap">VNPT Home
+              Camera</span></h2>
           <p class="section-subtitle">
             Bảo vệ tổ ấm trọn vẹn với thiết bị Camera thông minh xoay 360° trong nhà & ngoài trời chống nước IP66. Hình
             ảnh Full HD sắc nét, công nghệ AI nhận diện người và lưu trữ Cloud an toàn tại Data Center Việt Nam.
@@ -246,7 +270,8 @@
     <section class="section" id="chu-ky-so">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Chữ Ký Số Cá Nhân & Doanh Nghiệp (VNPT SmartCA)</h2>
+          <h2 class="section-title"><span class="text-nowrap">Chữ Ký Số Cá Nhân</span> & <span class="text-nowrap">Doanh
+              Nghiệp (VNPT SmartCA)</span></h2>
           <p class="section-subtitle">
             Ký số từ xa tiện lợi trên điện thoại di động không cần USB Token. Đạt tiêu chuẩn bảo mật châu Âu eIDAS, tích
             hợp toàn diện Cổng Dịch vụ công Quốc gia, Thuế điện tử, BHXH và Hóa đơn điện tử.
@@ -260,6 +285,211 @@
       </div>
     </section>
 
+    <!-- SECTION 5: HÓA ĐƠN ĐIỆN TỬ VNPT-INVOICE & MÁY TÍNH TIỀN -->
+    <section class="section section-alt" id="hoa-don-dien-tu">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>Giải Pháp Doanh Nghiệp & Hộ Kinh Doanh</span>
+          </div>
+          <h2 class="section-title"><span class="text-nowrap">Hóa Đơn Điện Tử VNPT-Invoice</span> <span
+              class="text-nowrap">& Máy Tính Tiền</span></h2>
+          <p class="section-subtitle">
+            Giải pháp Hóa đơn điện tử hợp chuẩn 100% Thông tư 78/2021/TT-BTC & Nghị định 123/2020/NĐ-CP của Tổng cục
+            Thuế. Khởi tạo từ máy tính tiền (POS), tích hợp phần mềm kế toán và lưu trữ an toàn 10 năm tại máy chủ VNPT
+            IDC.
+          </p>
+        </div>
+
+        <!-- Highlight Banner -->
+        <div class="category-highlight-banner">
+          <div class="cat-banner-content">
+            <div class="cat-banner-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="cat-banner-title">Ưu đãi khởi tạo & phát hành hóa đơn 2026</div>
+              <div class="cat-banner-text">Miễn phí 100% thủ tục đăng ký Mẫu 01 lên Cơ quan Thuế, tặng mẫu hóa đơn chuẩn
+                nhận diện thương hiệu và bảo mật lưu trữ 10 năm.</div>
+            </div>
+          </div>
+          <a href="#dang-ky" class="btn btn-secondary">Đăng ký tư vấn ngay</a>
+        </div>
+
+        <!-- 4 Cột Giới thiệu giải pháp & Ưu thế vượt trội -->
+        <div class="invoice-intro-grid">
+          <div class="invoice-intro-card">
+            <div class="invoice-intro-icon icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h4>Chuẩn Thông Tư 78 & NĐ 123</h4>
+            <p>100% hợp chuẩn pháp lý của Tổng cục Thuế, sẵn sàng cho cả Hóa đơn có mã và không có mã của cơ quan Thuế.
+            </p>
+          </div>
+
+          <div class="invoice-intro-card">
+            <div class="invoice-intro-icon icon-orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h4>Khởi Tạo Từ Máy Tính Tiền (POS)</h4>
+            <p>Giải pháp tối ưu bắt buộc cho nhà hàng, quán ăn, khách sạn, bán lẻ, siêu thị mini theo chỉ đạo của Tổng
+              cục Thuế.</p>
+          </div>
+
+          <div class="invoice-intro-card">
+            <div class="invoice-intro-icon icon-green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <h4>Tích Hợp Kế Toán & Bán Hàng</h4>
+            <p>Kết nối thông suốt với phần mềm kế toán MISA, Fast, Bravo và phần mềm bán hàng KiotViet, Sapo, iPOS,
+              Haravan...</p>
+          </div>
+
+          <div class="invoice-intro-card">
+            <div class="invoice-intro-icon icon-cyan">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h4>Lưu Trữ An Toàn 10 Năm</h4>
+            <p>Dữ liệu hóa đơn được sao lưu và bảo mật an toàn 10 năm tại các Trung tâm dữ liệu VNPT IDC đạt chuẩn quốc
+              tế Tier 3.</p>
+          </div>
+        </div>
+
+        <!-- Khối Quy Định Pháp Luật Về Hóa Đơn Điện Tử Cho Hộ Kinh Doanh & Doanh Nghiệp -->
+        <div class="legal-guide-wrapper">
+          <div class="legal-guide-header">
+            <div class="legal-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Cẩm Nang Pháp Lý Bắt Buộc</span>
+            </div>
+            <h3 class="legal-title">Quy Định Pháp Luật Về Sử Dụng Hóa Đơn Điện Tử</h3>
+            <p class="legal-subtitle">Những điều chủ Hộ kinh doanh & Doanh nghiệp bắt buộc phải nắm rõ để tránh bị xử
+              phạt vi phạm hành chính thuế.</p>
+          </div>
+
+          <div class="legal-cards-grid">
+            <!-- Card 1: Hộ kinh doanh cá thể -->
+            <div class="legal-card legal-hkd">
+              <div class="legal-card-tag">Hộ Kinh Doanh & Cá Nhân</div>
+              <h4 class="legal-card-title">Quy định bắt buộc đối với Hộ Kinh Doanh</h4>
+              <ul class="legal-list">
+                <li>
+                  <span class="legal-check">✓</span>
+                  <div><strong>Đối tượng áp dụng:</strong> Hộ kinh doanh nộp thuế theo phương pháp kê khai; Hộ kinh
+                    doanh hoạt động trong lĩnh vực ăn uống, nhà hàng, khách sạn, bán lẻ thuốc tân dược, hàng tiêu dùng,
+                    dịch vụ giải trí.</div>
+                </li>
+                <li>
+                  <span class="legal-check">✓</span>
+                  <div><strong>HĐĐT từ Máy tính tiền:</strong> Bắt buộc triển khai xuất hóa đơn khởi tạo từ máy tính
+                    tiền có kết nối chuyển dữ liệu điện tử đến cơ quan Thuế theo Thông tư 78/2021/TT-BTC.</div>
+                </li>
+                <li>
+                  <span class="legal-warn">⚠️</span>
+                  <div><strong style="color: #DC2626;">Mức xử phạt nếu vi phạm (NĐ 125/2020/NĐ-CP):</strong> Phạt tiền
+                    từ <strong>4.000.000đ - 8.000.000đ</strong> đối với hành vi không lập hóa đơn khi bán hàng hoặc lập
+                    hóa đơn không đúng thời điểm.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Card 2: Doanh nghiệp SME & Lớn -->
+            <div class="legal-card legal-dn">
+              <div class="legal-card-tag">Doanh Nghiệp (SME & Lớn)</div>
+              <h4 class="legal-card-title">Quy định đối với Doanh Nghiệp</h4>
+              <ul class="legal-list">
+                <li>
+                  <span class="legal-check">✓</span>
+                  <div><strong>100% bắt buộc chuyển đổi:</strong> Căn cứ Nghị định 123/2020/NĐ-CP, toàn bộ doanh nghiệp
+                    phải sử dụng HĐĐT (có mã hoặc không có mã của cơ quan Thuế) khi bán hàng hóa, cung cấp dịch vụ.
+                  </div>
+                </li>
+                <li>
+                  <span class="legal-check">✓</span>
+                  <div><strong>Ký số & Báo cáo:</strong> Hóa đơn phải được ký bằng Chữ ký số hợp lệ (VNPT SmartCA hoặc
+                    VNPT Token CA) trước khi gửi cho khách hàng và cơ quan Thuế.</div>
+                </li>
+                <li>
+                  <span class="legal-check">✓</span>
+                  <div><strong>Lợi ích tối ưu chi phí:</strong> Tiết kiệm đến 90% chi phí in ấn, bảo quản, vận chuyển so
+                    với hóa đơn giấy truyền thống; tránh rủi ro thất lạc, cháy hỏng.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Card 3: Quy trình 4 bước phát hành siêu tốc -->
+            <div class="legal-card legal-process">
+              <div class="legal-card-tag">Quy Trình Triển Khai</div>
+              <h4 class="legal-card-title">4 Bước Phát Hành Hóa Đơn Cùng VNPT</h4>
+              <div class="process-steps">
+                <div class="process-step-item">
+                  <div class="step-num">1</div>
+                  <div class="step-info">
+                    <strong>Chọn gói cước</strong>
+                    <span>Chọn dải số lượng hóa đơn phù hợp quy mô.</span>
+                  </div>
+                </div>
+                <div class="process-step-item">
+                  <div class="step-num">2</div>
+                  <div class="step-info">
+                    <strong>Thiết kế & Nộp Mẫu 01</strong>
+                    <span>VNPT hỗ trợ nộp Mẫu 01/ĐKTĐ-HĐĐT lên Cơ quan Thuế.</span>
+                  </div>
+                </div>
+                <div class="process-step-item">
+                  <div class="step-num">3</div>
+                  <div class="step-info">
+                    <strong>Thuế phê duyệt</strong>
+                    <span>Cơ quan Thuế chấp thuận nhanh chóng trong 15 - 30 phút.</span>
+                  </div>
+                </div>
+                <div class="process-step-item">
+                  <div class="step-num">4</div>
+                  <div class="step-info">
+                    <strong>Bắt đầu xuất hóa đơn</strong>
+                    <span>Ký số và gửi ngay cho khách hàng qua Email / SMS / Tra cứu Portal.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Grid Package Cards -->
+        <div class="packages-grid" id="hoa-don-dien-tu-grid">
+          <!-- Populated by JavaScript from Google Sheets -->
+        </div>
+      </div>
+    </section>
+
+    >>>>>>> 7c5ed8f (new version)
     <!-- SECTION MID-CTA: BANNER KÊU GỌI HÀNH ĐỘNG ĐẶC BIỆT -->
     <section class="section-mid-cta" id="tu-van-nhanh">
       <div class="container">
@@ -273,28 +503,49 @@
               </span>
               <h3 class="mid-cta-title">Chưa Biết Gói Cước Nào Tối Ưu Cho Gia Đình Bạn?</h3>
               <p class="mid-cta-desc">
-                Chỉ cần để lại số điện thoại hoặc gọi ngay Hotline, kỹ thuật viên VNPT sẽ khảo sát hạ tầng & tư vấn gói cước tiết kiệm nhất, lắp đặt nhanh chỉ trong 24 giờ.
+
+                Chỉ cần để lại số điện thoại hoặc gọi ngay Hotline, kỹ thuật viên VNPT sẽ khảo sát hạ tầng & tư vấn gói
+                cước tiết kiệm nhất, lắp đặt nhanh chỉ trong 24 giờ.
+
+                Chỉ cần để lại số điện thoại hoặc gọi ngay Hotline, kỹ thuật viên VNPT sẽ khảo sát hạ tầng & tư vấn gói
+                cước tiết kiệm nhất, lắp đặt nhanh chỉ trong 24 giờ.
+
               </p>
             </div>
             <div class="mid-cta-actions">
               <a href="tel:0944116667" class="btn btn-cta-call" id="btn-midcta-call">
                 <span class="btn-icon-pulse">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                  </svg>
+
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+
+                    </svg>
                 </span>
                 <span>Gọi Hotline: <strong>0944.116.667</strong></span>
               </a>
-              <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer" class="btn btn-cta-zalo" id="btn-midcta-zalo">
-                <span class="zalo-tag">Zalo</span>
-                <span>Chat Zalo tư vấn</span>
-              </a>
-              <button type="button" class="btn btn-cta-request" id="btn-open-quick-modal">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Yêu cầu gọi lại trong 5 phút</span>
-              </button>
+
+              <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer" class="btn btn-cta-zalo"
+                id="btn-midcta-zalo">
+
+                <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer" class="btn btn-cta-zalo"
+                  id="btn-midcta-zalo">
+
+                  <span class="zalo-tag">Zalo</span>
+                  <span>Chat Zalo tư vấn</span>
+                </a>
+                <button type="button" class="btn btn-cta-request" id="btn-open-quick-modal">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Yêu cầu gọi lại trong 5 phút</span>
+                </button>
             </div>
           </div>
         </div>
@@ -439,6 +690,7 @@
             <li><a href="#sim-so">Sim Số Đẹp & Data VinaPhone</a></li>
             <li><a href="#camera-an-ninh">Camera An Ninh VNPT Home</a></li>
             <li><a href="#chu-ky-so">Chữ Ký Số VNPT SmartCA</a></li>
+            <li><a href="#hoa-don-dien-tu">Hóa Đơn Điện Tử VNPT-Invoice</a></li>
           </ul>
         </div>
 
@@ -463,121 +715,178 @@
   <!-- Floating Quick Action Contact Widget (Desktop & Tablet) -->
   <div class="floating-cta-widget" id="floating-cta-widget">
     <!-- Back to Top Button -->
-    <button type="button" class="floating-btn btn-back-to-top" id="btn-back-to-top" aria-label="Cuộn lên đầu trang" title="Lên đầu trang">
+
+    <button type="button" class="floating-btn btn-back-to-top" id="btn-back-to-top" aria-label="Cuộn lên đầu trang"
+      title="Lên đầu trang">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path d="M18 15l-6-6-6 6"/>
-      </svg>
-    </button>
+        <path d="M18 15l-6-6-6 6" />
+        <button type="button" class="floating-btn btn-back-to-top" id="btn-back-to-top" aria-label="Cuộn lên đầu trang"
+          title="Lên đầu trang">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 15l-6-6-6 6" />
+          </svg>
+        </button>
 
-    <!-- Quick Register Button -->
-    <a href="#dang-ky" class="floating-btn btn-floating-register" aria-label="Đăng ký nhanh" title="Đăng ký lắp đặt">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-      </svg>
-      <span class="floating-tooltip">Đăng ký online</span>
-    </a>
+        <!-- Quick Register Button -->
+        <a href="#dang-ky" class="floating-btn btn-floating-register" aria-label="Đăng ký nhanh"
+          title="Đăng ký lắp đặt">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span class="floating-tooltip">Đăng ký online</span>
+        </a>
 
-    <!-- Zalo Chat Button -->
-    <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer" class="floating-btn btn-floating-zalo" aria-label="Chat Zalo" title="Chat Zalo tư vấn">
-      <span class="zalo-floating-icon">Zalo</span>
-      <span class="floating-tooltip">Chat Zalo</span>
-    </a>
+        <!-- Zalo Chat Button -->
 
-    <!-- Direct Hotline Call Button with Pulse Ripple -->
-    <a href="tel:0944116667" class="floating-btn btn-floating-hotline" aria-label="Gọi Hotline 0944.116.667" title="Gọi Hotline: 0944.116.667">
-      <span class="floating-pulse-ring ring-1"></span>
-      <span class="floating-pulse-ring ring-2"></span>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-      </svg>
-      <span class="floating-tooltip">Hotline: 0944.116.667</span>
-    </a>
+        <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer"
+          class="floating-btn btn-floating-zalo" aria-label="Chat Zalo" title="Chat Zalo tư vấn">
+
+          <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer"
+            class="floating-btn btn-floating-zalo" aria-label="Chat Zalo" title="Chat Zalo tư vấn">
+
+            <span class="zalo-floating-icon">Zalo</span>
+            <span class="floating-tooltip">Chat Zalo</span>
+          </a>
+
+          <!-- Direct Hotline Call Button with Pulse Ripple -->
+
+          <a href="tel:0944116667" class="floating-btn btn-floating-hotline" aria-label="Gọi Hotline 0944.116.667"
+            title="Gọi Hotline: 0944.116.667">
+            <span class="floating-pulse-ring ring-1"></span>
+            <span class="floating-pulse-ring ring-2"></span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+
+              <a href="tel:0944116667" class="floating-btn btn-floating-hotline" aria-label="Gọi Hotline 0944.116.667"
+                title="Gọi Hotline: 0944.116.667">
+                <span class="floating-pulse-ring ring-1"></span>
+                <span class="floating-pulse-ring ring-2"></span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+
+                </svg>
+                <span class="floating-tooltip">Hotline: 0944.116.667</span>
+              </a>
   </div>
 
   <!-- Mobile Sticky Bottom Action Bar -->
   <div class="mobile-sticky-cta" id="mobile-sticky-cta" aria-label="Thanh tác vụ nhanh di động">
     <a href="tel:0944116667" class="mobile-cta-item cta-call">
       <div class="mobile-cta-icon-wrap">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
         </svg>
       </div>
       <span>Gọi 0944.116.667</span>
-    </a>
-    <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer" class="mobile-cta-item cta-zalo">
-      <div class="mobile-cta-icon-wrap zalo-bg">
-        <span>Zalo</span>
-      </div>
-      <span>Chat Zalo</span>
-    </a>
-    <a href="#dang-ky" class="mobile-cta-item cta-register">
-      <div class="mobile-cta-icon-wrap">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </div>
-      <span>Đăng Ký Ngay</span>
-    </a>
+
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+      </svg>
+  </div>
+  <span>Gọi Ngay</span>
+
+  </a>
+  <a href="https://zalo.me/0944116667" target="_blank" rel="noopener noreferrer" class="mobile-cta-item cta-zalo">
+    <div class="mobile-cta-icon-wrap zalo-bg">
+      <span>Zalo</span>
+    </div>
+    <span>Chat Zalo</span>
+  </a>
+  <a href="#dang-ky" class="mobile-cta-item cta-register">
+    <div class="mobile-cta-icon-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </div>
+    <span>Đăng Ký Ngay</span>
+  </a>
   </div>
 
   <!-- Quick Callback Modal Popup -->
-  <div class="quick-modal-backdrop" id="quick-callback-modal" role="dialog" aria-modal="true" aria-labelledby="modal-callback-title">
-    <div class="quick-modal-dialog">
-      <button type="button" class="quick-modal-close" id="btn-close-modal" aria-label="Đóng popup">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
+  <div class="quick-modal-backdrop" id="quick-callback-modal" role="dialog" aria-modal="true"
+    aria-labelledby="modal-callback-title">
 
-      <div class="quick-modal-header">
-        <div class="quick-modal-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-        </div>
-        <h3 id="modal-callback-title" class="quick-modal-title">Yêu Cầu Gọi Lại Trong 5 Phút</h3>
-        <p class="quick-modal-subtitle">Để lại số điện thoại, tư vấn viên VNPT sẽ liên hệ hỗ trợ bạn ngay lập tức.</p>
-      </div>
+    <div class="quick-modal-backdrop" id="quick-callback-modal" role="dialog" aria-modal="true"
+      aria-labelledby="modal-callback-title">
 
-      <form id="quick-callback-form" novalidate>
-        <div class="form-group">
-          <label class="form-label" for="modal-fullname">Họ và tên <span class="required">*</span></label>
-          <input type="text" id="modal-fullname" name="fullname" class="form-control" placeholder="Ví dụ: Nguyễn Văn An" required>
-          <div class="form-hint"></div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="modal-phone">Số điện thoại <span class="required">*</span></label>
-          <input type="tel" id="modal-phone" name="phone" class="form-control" placeholder="Ví dụ: 0912345678" required>
-          <div class="form-hint"></div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="modal-package">Dịch vụ quan tâm</label>
-          <select id="modal-package" name="package_interest" class="form-control">
-            <option value="">-- Chọn gói cước quan tâm --</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-submit-modal">
-          <span>Gọi Lại Cho Tôi Ngay</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7" />
+      <div class="quick-modal-dialog">
+        <button type="button" class="quick-modal-close" id="btn-close-modal" aria-label="Đóng popup">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-      </form>
+
+        <div class="quick-modal-header">
+          <div class="quick-modal-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+
+            </svg>
+          </div>
+          <h3 id="modal-callback-title" class="quick-modal-title">Yêu Cầu Gọi Lại Trong 5 Phút</h3>
+          <p class="quick-modal-subtitle">Để lại số điện thoại, tư vấn viên VNPT sẽ liên hệ hỗ trợ bạn ngay lập tức.</p>
+        </div>
+
+        <form id="quick-callback-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="modal-fullname">Họ và tên <span class="required">*</span></label>
+
+            <input type="text" id="modal-fullname" name="fullname" class="form-control"
+              placeholder="Ví dụ: Nguyễn Văn An" required>
+
+            <input type="text" id="modal-fullname" name="fullname" class="form-control"
+              placeholder="Ví dụ: Nguyễn Văn An" required>
+            >>>>>>> 7c5ed8f (new version)
+            <div class="form-hint"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modal-phone">Số điện thoại <span class="required">*</span></label>
+            <input type="tel" id="modal-phone" name="phone" class="form-control" placeholder="Ví dụ: 0912345678"
+              required>
+            <div class="form-hint"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modal-package">Dịch vụ quan tâm</label>
+            <select id="modal-package" name="package_interest" class="form-control">
+              <option value="">-- Chọn gói cước quan tâm --</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-submit-modal">
+            <span>Gọi Lại Cho Tôi Ngay</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <!-- Floating Toast Notifications Container -->
-  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+    <!-- Floating Toast Notifications Container -->
+    <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
-  <!-- JavaScript Modules -->
-  <script src="js/config.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/app.js"></script>
+    <!-- JavaScript Modules -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>

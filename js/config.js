@@ -13,6 +13,15 @@ const CONFIG = {
   // Timeout khi gọi API (milliseconds)
   REQUEST_TIMEOUT_MS: 15000,
 
+  // Cấu hình Tự Động Trượt Dọc Từng Mục Như Slider (Section Carousel Auto-Slide)
+  AUTO_SCROLL: {
+    ENABLED_BY_DEFAULT: true,       // Tự động trượt ngay khi mở trang mà không cần thao tác
+    INITIAL_DELAY_MS: 20000,        // Thời gian chờ 30 giây ở Mục 1 Hero Banner
+    SECTION_DURATION_MS: 20000,     // Thời gian chờ 30 giây ở mỗi nhóm dịch vụ sau khi trượt đến
+    LAST_SECTION_DURATION_MS: 20000,// Thời gian chờ 30 giây ở form Đăng ký cuối trang trước khi trượt về đầu
+    IDLE_RESUME_MS: 4000            // Tự tiếp tục trượt sau 4s khi người dùng dừng thao tác
+  },
+
   // Dữ liệu dự phòng chuẩn nhận diện VNPT (Mỗi danh mục có 5 gói cước -> Tự động kích hoạt Slider trượt ngang mượt mà)
   FALLBACK_DATA: {
     // 1. COMBO INTERNET + TRUYỀN HÌNH "GÓI CƯỚI"
@@ -349,6 +358,90 @@ const CONFIG = {
         cta_label: "Đăng ký Token",
         is_active: true,
         badge: "Phần Cứng Token",
+        highlight: false
+      }
+    ],
+
+    // 5. HÓA ĐƠN ĐIỆN TỬ (VNPT-INVOICE & MÁY TÍNH TIỀN)
+    hoa_don_dien_tu: [
+      {
+        package_name: "VNPT-Invoice 300 HĐ (Hộ Kinh Doanh)",
+        price: "300.000 đ",
+        description: "Gói cước hóa đơn điện tử cơ bản cho Hộ kinh doanh cá thể mới thành lập",
+        features: "Số lượng 300 số hóa đơn điện tử;Hợp chuẩn Thông tư 78 và Nghị định 123;Tặng mẫu hóa đơn tiêu chuẩn;Lưu trữ an toàn 10 năm tại VNPT IDC",
+        feature_list: [
+          "Số lượng 300 số hóa đơn điện tử (1.000đ/HĐ)",
+          "Hợp chuẩn 100% Thông tư 78 và Nghị định 123/2020/NĐ-CP",
+          "Miễn phí thiết kế mẫu hóa đơn theo nhận diện",
+          "Lưu trữ dữ liệu an toàn bảo mật 10 năm tại VNPT IDC"
+        ],
+        cta_label: "Đăng ký gói 300 HĐ",
+        is_active: true,
+        badge: "Hộ Kinh Doanh",
+        highlight: false
+      },
+      {
+        package_name: "VNPT-Invoice 500 HĐ",
+        price: "450.000 đ",
+        description: "Gói cước phổ biến cho Hộ kinh doanh & Doanh nghiệp vừa và nhỏ",
+        features: "Số lượng 500 số hóa đơn điện tử;Hỗ trợ ký số qua SmartCA hoặc USB Token;Tự động truyền nhận dữ liệu cơ quan Thuế;Tra cứu hóa đơn 24/7 trực tuyến",
+        feature_list: [
+          "Số lượng 500 số hóa đơn điện tử (900đ/HĐ)",
+          "Hỗ trợ ký số qua SmartCA hoặc USB Token",
+          "Tự động truyền nhận dữ liệu trực tiếp với Tổng cục Thuế",
+          "Cổng tra cứu hóa đơn trực tuyến 24/7 cho khách mua"
+        ],
+        cta_label: "Đăng ký gói 500 HĐ",
+        is_active: true,
+        badge: "Bán Chạy",
+        highlight: false
+      },
+      {
+        package_name: "VNPT-Invoice 1.000 HĐ (Khuyên Dùng)",
+        price: "750.000 đ",
+        description: "Giải pháp hóa đơn điện tử toàn diện cho Doanh nghiệp & Chuỗi bán lẻ",
+        features: "Số lượng 1.000 số hóa đơn điện tử;Tích hợp HĐĐT khởi tạo từ Máy tính tiền (POS);Tương thích phần mềm kế toán MISA, Fast, Bravo...;Hỗ trợ thủ tục nộp tờ khai Mẫu 01 lên Cơ quan Thuế",
+        feature_list: [
+          "Số lượng 1.000 số hóa đơn điện tử (750đ/HĐ)",
+          "Tích hợp HĐĐT khởi tạo từ Máy tính tiền (POS)",
+          "Tương thích 100% phần mềm kế toán MISA, Fast, Bravo...",
+          "Hỗ trợ trọn gói nộp tờ khai Mẫu 01/ĐKTĐ-HĐĐT lên Thuế"
+        ],
+        cta_label: "Đăng ký ngay",
+        is_active: true,
+        badge: "Khuyên Dùng",
+        highlight: true
+      },
+      {
+        package_name: "VNPT-Invoice 2.000 HĐ + Máy Tính Tiền",
+        price: "1.300.000 đ",
+        description: "Tối ưu cho nhà hàng, quán cafe, siêu thị mini, bán lẻ & dịch vụ",
+        features: "Số lượng 2.000 số hóa đơn điện tử;Xuất hóa đơn tức thời tại quầy thu ngân;Quản lý doanh thu, báo cáo thuế realtime;Hỗ trợ kỹ thuật chuyên biệt 24/7",
+        feature_list: [
+          "Số lượng 2.000 số hóa đơn điện tử (650đ/HĐ)",
+          "Xuất hóa đơn tức thời tại quầy thu ngân theo ca",
+          "Quản lý doanh thu, báo cáo thuế realtime minh bạch",
+          "Hỗ trợ kỹ thuật ưu tiên 24/7 từ chuyên viên VNPT"
+        ],
+        cta_label: "Đăng ký POS",
+        is_active: true,
+        badge: "POS Máy Tính Tiền",
+        highlight: true
+      },
+      {
+        package_name: "VNPT-Invoice 5.000 HĐ (Doanh Nghiệp)",
+        price: "2.650.000 đ",
+        description: "Gói cước dung lượng lớn tiết kiệm tối đa cho Doanh nghiệp xuất hóa đơn thường xuyên",
+        features: "Số lượng 5.000 số hóa đơn điện tử;Không giới hạn số lượng người dùng tạo lập HĐ;Mở API tích hợp hệ thống ERP, CRM doanh nghiệp;Phân quyền ký duyệt đa cấp độ",
+        feature_list: [
+          "Số lượng 5.000 số hóa đơn điện tử (siêu rẻ 530đ/HĐ)",
+          "Không giới hạn số lượng tài khoản phân quyền tạo lập HĐ",
+          "Cung cấp Web Service API kết nối ERP, SAP, CRM",
+          "Phân quyền ký duyệt đa cấp độ (Kế toán -> Giám đốc)"
+        ],
+        cta_label: "Đăng ký Doanh Nghiệp",
+        is_active: true,
+        badge: "Tiết Kiệm 50%",
         highlight: false
       }
     ]

@@ -11,12 +11,14 @@ Landing Page giới thiệu & thu thập đăng ký các gói dịch vụ viễn
    - **Sim Số & Data** (Sim số đẹp + gói cước di động VinaPhone)
    - **Camera An Ninh** (Thiết bị VNPT Home Camera 360°/IP66 + Gói Cloud)
    - **Chữ Ký Số** (VNPT SmartCA cá nhân & doanh nghiệp không cần USB Token)
-2. **Backend Serverless Google Sheets**:
-   - Quản lý gói cước động qua 4 tab Google Sheet (`combo_internet`, `sim_so`, `camera_an_ninh`, `chu_ky_so`).
+2. **Backend Serverless Google Sheets & Email Alert**:
+   - Quản lý gói cước động qua 5 tab Google Sheet (`combo_internet`, `sim_so`, `camera_an_ninh`, `chu_ky_so`, `hoa_don_dien_tu`).
    - Cập nhật giá / gói cước trên Sheet sẽ phản ánh ngay trên Landing Page mà không cần build lại.
+   - **Tự động gửi Email thông báo tức thì cho Quản trị viên** kèm đầy đủ thông tin khách hàng, số điện thoại, gói cước và nút bấm gọi nhanh.
 3. **Form đăng ký Real-time Write & Đồng bộ**:
    - Gọi `POST` đến Google Apps Script Web App.
    - Script thực hiện `appendRow()` và `SpreadsheetApp.flush()` để ghi đĩa tức thời vào tab `submissions`.
+   - Script tự động kích hoạt `MailApp.sendEmail()` gửi thông báo về hòm thư Admin.
    - Frontend **chỉ hiển thị thông báo thành công sau khi nhận được xác nhận HTTP 200 `{ status: "success" }`**.
    - Nếu xảy ra lỗi mạng / quota: hiển thị thông báo lỗi rõ ràng, **giữ nguyên dữ liệu người dùng đã nhập** để bấm thử lại.
 4. **Chuẩn nhận diện thương hiệu VNPT**:

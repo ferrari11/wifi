@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const App = {
   elements: {
-    // 4 Grids / Containers sản phẩm
+    // 5 Grids / Containers sản phẩm
     comboGrid: document.getElementById('combo-internet-grid'),
     simGrid: document.getElementById('sim-so-grid'),
     cameraGrid: document.getElementById('camera-an-ninh-grid'),
     caGrid: document.getElementById('chu-ky-so-grid'),
+    invoiceGrid: document.getElementById('hoa-don-dien-tu-grid'),
 
     // Forms
     mainForm: document.getElementById('main-register-form'),
@@ -44,7 +45,10 @@ const App = {
     navLinks: document.querySelectorAll('.nav-link'),
 
     // Toast Container
-    toastContainer: document.getElementById('toast-container')
+    toastContainer: document.getElementById('toast-container'),
+
+    // Top Reading Scroll Progress Bar
+    scrollProgressBar: document.getElementById('scroll-progress-bar')
   },
 
   state: {
@@ -52,7 +56,8 @@ const App = {
       combo_internet: [],
       sim_so: [],
       camera_an_ninh: [],
-      chu_ky_so: []
+      chu_ky_so: [],
+      hoa_don_dien_tu: []
     },
     allActivePackagesList: [],
     isSubmitting: false,
@@ -63,6 +68,9 @@ const App = {
 
   async init() {
     this.bindEvents();
+    // Khởi tạo tính năng Tự Động Trượt Lên Xuống & Điều hướng dọc
+    this.autoScroll.init();
+
     // Tải dữ liệu mới nhất từ Google Sheets ngay khi tải trang (F5 hoặc mở trình duyệt)
     await this.loadPackages(false);
 
@@ -216,7 +224,7 @@ const App = {
         this.state.lastSyncTime = Date.now();
 
         // Gom danh sách toàn bộ gói cước để đổ vào dropdown
-        ['combo_internet', 'sim_so', 'camera_an_ninh', 'chu_ky_so'].forEach(key => {
+        ['combo_internet', 'sim_so', 'camera_an_ninh', 'chu_ky_so', 'hoa_don_dien_tu'].forEach(key => {
           if (Array.isArray(this.state.packages[key])) {
             this.state.packages[key].forEach(pkg => {
               if (pkg.package_name) {
@@ -226,11 +234,12 @@ const App = {
           }
         });
 
-        // Render 4 danh mục (Tự động kích hoạt Slider nếu có > 3 gói)
+        // Render 5 danh mục (Tự động kích hoạt Slider nếu có > 3 gói)
         this.renderCategorySection(this.elements.comboGrid, this.state.packages.combo_internet, 'combo');
         this.renderCategorySection(this.elements.simGrid, this.state.packages.sim_so, 'sim');
         this.renderCategorySection(this.elements.cameraGrid, this.state.packages.camera_an_ninh, 'camera');
         this.renderCategorySection(this.elements.caGrid, this.state.packages.chu_ky_so, 'ca');
+        this.renderCategorySection(this.elements.invoiceGrid, this.state.packages.hoa_don_dien_tu, 'invoice');
 
         // Populate dropdown
         this.populatePackageSelects();
@@ -262,6 +271,7 @@ const App = {
     if (this.elements.simGrid) this.elements.simGrid.innerHTML = skeletonHtml;
     if (this.elements.cameraGrid) this.elements.cameraGrid.innerHTML = skeletonHtml;
     if (this.elements.caGrid) this.elements.caGrid.innerHTML = skeletonHtml;
+    if (this.elements.invoiceGrid) this.elements.invoiceGrid.innerHTML = skeletonHtml;
   },
 
   /**
@@ -775,5 +785,198 @@ const App = {
       .toLowerCase()
       .replace(/[^\w ]+/g, '')
       .replace(/ +/g, '-');
+  },
+
+  /**
+   * TÍNH NĂNG TỰ ĐỘNG TRƯỢT RẢNH TAY (100% AUTOMATIC HANDS-FREE TOUR)
+   * Tự động trượt từ Mục 1 Hero Banner -> Các danh mục sản phẩm -> Cuối trang (Form Đăng ký),
+   * sau đó từ cuối trang trượt thẳng một mạch êm ái lên lại Mục 1 Hero Banner theo vòng lặp vô tận.
+   */
+  autoScroll: {
+    isRunning: false,
+    currentIndex: 0,
+    timer: null,
+    idleTimer: null,
+    sections: [
+      'hero-section',
+      'combo-internet',
+      'sim-so',
+      'camera-an-ninh',
+      'chu-ky-so',
+      'hoa-don-dien-tu',
+      'dang-ky'
+    ],
+
+    init() {
+      this.bindEvents();
+      this.updateScrollIndicators();
+
+      // Tự động kích hoạt hành trình trượt rảnh tay ngay khi mở trang
+      const config = window.CONFIG?.AUTO_SCROLL || {};
+      if (config.ENABLED_BY_DEFAULT !== false) {
+        // Khởi động trượt, bắt đầu đếm 30 giây tại Mục 1 Hero banner
+        setTimeout(() => {
+          if (!this.isRunning) {
+            this.start();
+          }
+        }, 1000);
+      }
+    },
+
+    bindEvents() {
+      // Cập nhật thanh tiến trình đọc trang
+      window.addEventListener('scroll', () => {
+        this.updateScrollIndicators();
+      }, { passive: true });
+
+      // Khi người dùng chủ động lăn chuột hoặc vuốt chạm màn hình, tạm dừng trượt
+      const handleUserInteraction = () => {
+        if (this.isRunning) {
+          this.pause();
+        }
+        this.scheduleIdleResume();
+      };
+
+      window.addEventListener('wheel', handleUserInteraction, { passive: true });
+      window.addEventListener('touchmove', handleUserInteraction, { passive: true });
+
+      // Khi người dùng nhập form đăng ký, tạm dừng trượt để không gián đoạn thao tác
+      const formInputs = document.querySelectorAll('input, select, textarea');
+      formInputs.forEach(input => {
+        input.addEventListener('focus', () => {
+          if (this.isRunning) {
+            this.pause();
+          }
+        });
+        input.addEventListener('blur', () => {
+          this.scheduleIdleResume();
+        });
+      });
+    },
+
+    start() {
+      this.isRunning = true;
+      clearTimeout(this.idleTimer);
+      this.scheduleNextSlide();
+    },
+
+    pause() {
+      this.isRunning = false;
+      clearTimeout(this.timer);
+      this.timer = null;
+    },
+
+    /**
+     * Lên lịch trượt chuyển tiếp theo từng giai đoạn
+     */
+    scheduleNextSlide() {
+      clearTimeout(this.timer);
+      if (!this.isRunning) return;
+
+      const config = window.CONFIG?.AUTO_SCROLL || {};
+      let stayDuration;
+
+      if (this.currentIndex === 0) {
+        // Thời gian dừng tại Mục 1 Hero banner (30s)
+        stayDuration = config.INITIAL_DELAY_MS || 30000;
+      } else if (this.currentIndex === this.sections.length - 1) {
+        // Thời gian dừng tại Cuối trang (Form đăng ký) (30s)
+        stayDuration = config.LAST_SECTION_DURATION_MS || 30000;
+      } else {
+        // Thời gian dừng ở các mục dịch vụ (30s)
+        stayDuration = config.SECTION_DURATION_MS || 30000;
+      }
+
+      this.timer = setTimeout(() => {
+        if (this.isRunning) {
+          // Tính index tiếp theo: khi hết cuối trang (index 6) sẽ quay lại 0 (Hero Banner)
+          const nextIdx = (this.currentIndex + 1) % this.sections.length;
+          this.goToSection(nextIdx);
+        }
+      }, stayDuration);
+    },
+
+    /**
+     * Trượt mượt mà đến vị trí mục chỉ định.
+     * Khi về index 0: trượt thẳng một mạch lên đầu trang (Hero Banner).
+     */
+    goToSection(index) {
+      if (index < 0) {
+        this.currentIndex = this.sections.length - 1;
+      } else if (index >= this.sections.length) {
+        this.currentIndex = 0;
+      } else {
+        this.currentIndex = index;
+      }
+
+      if (this.currentIndex === 0) {
+        // Trượt thẳng êm ái một mạch lên Mục 1 Hero Banner
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        const sectionId = this.sections[this.currentIndex];
+        const sectionEl = document.getElementById(sectionId);
+
+        if (sectionEl) {
+          const headerOffset = 70;
+          const targetTop = sectionEl.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: 'smooth'
+          });
+        }
+      }
+
+      if (this.isRunning) {
+        this.scheduleNextSlide();
+      }
+    },
+
+    /**
+     * Tự động tiếp tục hành trình trượt sau 4 giây khi người dùng ngừng tương tác
+     */
+    scheduleIdleResume() {
+      clearTimeout(this.idleTimer);
+
+      const config = window.CONFIG?.AUTO_SCROLL || {};
+      const idleResumeMs = config.IDLE_RESUME_MS || 4000;
+
+      this.idleTimer = setTimeout(() => {
+        if (!this.isRunning) {
+          this.start();
+        }
+      }, idleResumeMs);
+    },
+
+    updateScrollIndicators() {
+      const scrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = maxScroll > 0 ? (scrollY / maxScroll) * 100 : 0;
+
+      // Cập nhật thanh tiến trình mảnh tinh tế ở sát đỉnh trang
+      if (App.elements.scrollProgressBar) {
+        App.elements.scrollProgressBar.style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+      }
+
+      // Xác định mục hiện tại đang được hiển thị trên màn hình
+      let activeIndex = 0;
+      for (let i = 0; i < this.sections.length; i++) {
+        const id = this.sections[i];
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop - 180;
+          const height = el.offsetHeight;
+          if (scrollY >= top && scrollY < top + height) {
+            activeIndex = i;
+            break;
+          }
+        }
+      }
+
+      this.currentIndex = activeIndex;
+    }
   }
 };
